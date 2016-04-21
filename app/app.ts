@@ -1,5 +1,5 @@
 import 'es6-shim';
-import { App, Platform } from 'ionic-angular';
+import { App, Platform, IonicApp, Modal } from 'ionic-angular';
 import { provide } from 'angular2/core';
 import { Http } from 'angular2/http'
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -9,7 +9,7 @@ import { LoginPage } from './pages/login/login';
 import { AuthService } from './core/services/auth';
 
 @App({
-    template: '<ion-nav [root]="rootPage" id="nav"></ion-nav>',
+    template: '<ion-nav id="nav" [root]="rootPage"></ion-nav>',
     providers: [
         provide(AuthHttp, {
             useFactory: (http) => {
@@ -23,17 +23,20 @@ import { AuthService } from './core/services/auth';
 })
 
 export class MyApp {
-    rootPage:any = LoginPage;
+    rootPage:any = HomePage;
+    nav;
     
-    constructor(private platform:Platform, private auth:AuthService) {
-        platform.ready().then(() => {
-            StatusBar.styleDefault();
-        });
+    constructor(private platform:Platform, private auth:AuthService, private app:IonicApp) {
+        // platform.ready().then(() => {
+        //     StatusBar.styleDefault();
+        // });
     }
 
     ngAfterViewInit() {
-        if (this.auth.authenticated()) {
-            this.rootPage = HomePage;
+        if (!this.auth.authenticated()) {
+            this.nav = this.app.getComponent('nav');
+            let modal = Modal.create(LoginPage);
+            this.nav.present(modal);
         }
     }
 }

@@ -11,6 +11,5 @@ export class HomePage {
     tab2 = ProfilePage;
     
     constructor() {
-        console.log('init home', this.tab1);
     }
 }

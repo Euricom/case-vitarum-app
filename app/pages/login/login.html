@@ -1,8 +1,7 @@
-<ion-navbar *navbar>
-    <ion-title>Login</ion-title>
-</ion-navbar>
-
-<ion-content padding *ngIf="!auth.authenticated()">
-    <ion-img src=""></ion-img>
-    <button block (click)="doLogin()">Login</button>
+<ion-content>
+    <div class="scroll-wrap">
+        <img src="/build/img/vitarum-logo.svg" class="login-logo" />
+        <h1>Welcome to Vitarum!</h1>
+        <button (click)="doLogin()">Login</button>
+    </div>
 </ion-content>

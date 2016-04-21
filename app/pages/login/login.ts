@@ -1,4 +1,4 @@
-import { Page, NavController, IonicApp } from 'ionic-angular';
+import { Page, NavController, IonicApp, ViewController } from 'ionic-angular';
 import { AuthService } from '../../core/services/auth';
 import { HomePage } from '../home/home';
 
@@ -8,7 +8,7 @@ import { HomePage } from '../home/home';
 
 export class LoginPage {
     
-    constructor(private auth: AuthService, private nav: NavController, private app:IonicApp) {
+    constructor(private auth: AuthService, private nav: NavController, private app:IonicApp, private view:ViewController) {
     }
 
     doLogin() {
@@ -16,7 +16,8 @@ export class LoginPage {
             .then((res) => {
                 if (res) {
                     console.log('Login success, rerouting');
-                    this.nav.setRoot(HomePage);
+                    this.view.dismiss();
+                    //this.nav.setRoot(HomePage);
                     // let nav2 = this.app.getComponent('nav');
                     // nav2.setRoot(HomePage);
                 }
