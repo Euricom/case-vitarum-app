@@ -1,0 +1,8 @@
+<ion-navbar *navbar>
+    <ion-title>Login</ion-title>
+</ion-navbar>
+
+<ion-content padding *ngIf="!auth.authenticated()">
+    <ion-img src=""></ion-img>
+    <button block (click)="doLogin()">Login</button>
+</ion-content>

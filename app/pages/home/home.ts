@@ -1,28 +1,16 @@
 import { Page } from 'ionic-angular';
-//import employeeService from '../../services/';
+import { EmployeeListPage } from '../employee-list/employee-list';
+import { ProfilePage } from '../profile/profile';
 
 @Page({
-  templateUrl: 'build/pages/home/home.html',
+    templateUrl: 'build/pages/home/home.html'
 })
 
 export class HomePage {
-  searchQuery: string;
-  employees: {
-    firstName: string,
-    lastName: string
-  }[];
-
-  constructor() {
-    this.searchQuery = '';
-    this.employees = [
-      {
-        firstName: 'David',
-        lastName: 'De Keersmaecker'
-      },
-      {
-        firstName: 'Annelien',
-        lastName: 'Kortleven'
-      }
-    ];
-  }
+    tab1 = EmployeeListPage;
+    tab2 = ProfilePage;
+    
+    constructor() {
+        console.log('init home', this.tab1);
+    }
 }
