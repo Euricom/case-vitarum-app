@@ -1,4 +1,5 @@
 import {Page, NavController, IonicApp} from 'ionic-angular';
+import {AuthService} from '../../core/services/auth';
 import {LoginPage} from '../login-page/login-page';
 
 
@@ -6,7 +7,7 @@ import {LoginPage} from '../login-page/login-page';
   templateUrl: 'build/pages/profile/profile.html',
 })
 export class ProfilePage {
-  constructor(private nav: NavController, private app: IonicApp) {
+  constructor(private nav: NavController, private app: IonicApp, private auth: AuthService) {
 
   }
   

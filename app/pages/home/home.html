@@ -8,7 +8,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="#employee of filteredEmployees">
+    <ion-item *ngFor="#employee of filteredEmployees" (click)="goToDetailPage(employee)">
       {{employee.firstName}} {{employee.lastName}}
     </ion-item>
   </ion-list>

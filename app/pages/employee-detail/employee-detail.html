@@ -1,0 +1,16 @@
+<ion-navbar *navbar>
+  <ion-title>CV's for {{employee.firstName}}</ion-title>
+</ion-navbar>
+
+<ion-content padding class="employee-detail">
+    <ion-card *ngIf="employee">
+        <ion-item>
+          <ion-avatar item-left image-large>
+              <img src="{{employee.picture}}"/>
+          </ion-avatar>
+            <ion-item-content>
+                <h2>{{employee.firstName}} {{employee.lastName}}</h2>
+            </ion-item-content>
+        </ion-item>
+    </ion-card>
+</ion-content>

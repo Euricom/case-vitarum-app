@@ -5,6 +5,16 @@
   </ion-title>
 </ion-navbar>
 
-<ion-content>
-  <button block (click)="doLogout()">Logout</button>
+<ion-content padding>
+    <p>You are logged in as:</p>
+    <ion-card>
+        <ion-item *ngIf="auth.user">
+            <ion-avatar item-left>
+                <img src="{{ auth.user.picture }}">
+            </ion-avatar>
+            <h2>{{ auth.user.nickname }}</h2>
+            <p>{{ auth.user.email }}</p>
+        </ion-item>
+    </ion-card>
+    <button block (click)="doLogout()">Logout</button>
 </ion-content>
