@@ -1,3 +1,22 @@
 .login-page {
-
+    ion-content {
+        color: #fff;
+        background-color: color($colors, dark-bg);
+    }
+    
+    scroll-content {
+        display: table !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .scroll-wrap {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+    
+    .login-logo {
+        width: 100px;
+        height: 100px;
+    }
 }

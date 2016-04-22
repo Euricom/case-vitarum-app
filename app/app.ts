@@ -1,4 +1,4 @@
-import {App, Platform, MenuController} from 'ionic-angular';
+import {App, Platform, MenuController, IonicApp} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {provide} from 'angular2/core';
 import {Http} from 'angular2/http'
@@ -24,11 +24,19 @@ import {LoginPage} from './pages/login-page/login-page';
 export class MyApp {
   rootPage: any = LoginPage;
   menu: any;
+  nav;
 
-  constructor(platform: Platform, menu: MenuController) {
+  constructor(platform: Platform, menu: MenuController, private auth: AuthService, private app: IonicApp) {
     this.menu = menu;
     platform.ready().then(() => {
       StatusBar.styleDefault();
     });
+  }
+  
+  ngAfterViewInit() {
+      if (this.auth.authenticated()) {
+          this.nav = this.app.getComponent('nav');
+          this.nav.setRoot(TabsPage);
+      }
   }
 }

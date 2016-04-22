@@ -1,7 +1,7 @@
-<ion-navbar *navbar>
-  <ion-title>loginPage</ion-title>
-</ion-navbar>
-
-<ion-content padding class="login-page">
-  <button block (click)="doLogin()">Log in</button>
+<ion-content class="login-page">
+    <div class="scroll-wrap">
+        <img src="img/vitarum-logo.svg" class="login-logo" />
+        <h1>Welcome to Vitarum!</h1>
+        <button (click)="doLogin()">Login</button>
+    </div>
 </ion-content>
