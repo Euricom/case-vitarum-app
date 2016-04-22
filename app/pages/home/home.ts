@@ -13,12 +13,19 @@ export class HomePage {
   
   constructor(private nav:NavController, private app:IonicApp, private employeeService: EmployeeService) {
     employeeService.getEmployees()
-      .then((employees: any) => {
-        for (let employee of employees) {
-          this.employeeList.push(employee);
-        }
-        this.filteredEmployees = this.employeeList;
-      });
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        err => console.log(err),
+        () => console.log('Movie Search Complete')
+      );
+      // .then((employees: any) => {
+      //   for (let employee of employees) {
+      //     this.employeeList.push(employee);
+      //   }
+      //   this.filteredEmployees = this.employeeList;
+      // });
   }
   
   filterList(event:any) {

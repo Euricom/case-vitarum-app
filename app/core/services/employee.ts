@@ -1,22 +1,31 @@
-import { Injectable } from 'angular2/core';
+import {Injectable} from 'angular2/core';
+import {AuthHttp} from 'angular2-jwt';
+import 'rxjs/add/operator/map';
 
 @Injectable() 
 
 export class EmployeeService {
-    constructor() {}
+    error;
+    message;
+    constructor(private authHttp: AuthHttp) {
+        
+    }
     
     getEmployees() {
-        return new Promise((resolve, reject) => {
-            resolve([
-                {
-                    firstName: 'David',
-                    lastName: 'De Keersmaecker'
-                },
-                {
-                    firstName: 'Annelien',
-                    lastName: 'Kortleven'
-                }
-            ]);
-        });
+        return this.authHttp.get('http://vitarum.euri.com/api/users')
+            .map(res => res.json());
+      
+        // return new Promise((resolve, reject) => {
+        //     resolve([
+        //         {
+        //             firstName: 'David',
+        //             lastName: 'De Keersmaecker'
+        //         },
+        //         {
+        //             firstName: 'Annelien',
+        //             lastName: 'Kortleven'
+        //         }
+        //     ]);
+        // });
     }
 }
