@@ -5,11 +5,19 @@ import { Http } from 'angular2/http'
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { StatusBar } from 'ionic-native';
 import { HomePage } from './pages/home/home';
+import { ProfilePage } from './pages/profile/profile';
+import { EmployeeListPage } from './pages/employee-list/employee-list';
 import { LoginPage } from './pages/login/login';
 import { AuthService } from './core/services/auth';
 
 @App({
-    template: '<ion-nav id="nav" [root]="rootPage"></ion-nav>',
+    //template: '<ion-nav id="nav" [root]="rootPage"></ion-nav>',
+    template: `
+        <ion-nav id="nav" [root]="rootPage" *ngIf="!auth.authenticated()"></ion-nav>
+        <ion-tabs selectedIndex="0" *ngIf="auth.authenticated()">
+            <ion-tab tabIcon="search" [root]="tab1"></ion-tab>
+            <ion-tab tabIcon="contact" [root]="tab2"></ion-tab>
+        </ion-tabs>`,
     providers: [
         provide(AuthHttp, {
             useFactory: (http) => {
@@ -25,6 +33,8 @@ import { AuthService } from './core/services/auth';
 export class MyApp {
     rootPage:any = HomePage;
     nav;
+    tab1 = EmployeeListPage;
+    tab2 = ProfilePage;
     
     constructor(private platform:Platform, private auth:AuthService, private app:IonicApp) {
         // platform.ready().then(() => {
