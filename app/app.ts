@@ -1,23 +1,32 @@
 import 'es6-shim';
-import { App, Platform, IonicApp, Modal } from 'ionic-angular';
+import { App, Platform, IonicApp, MenuController } from 'ionic-angular';
 import { provide } from 'angular2/core';
 import { Http } from 'angular2/http'
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { StatusBar } from 'ionic-native';
 import { HomePage } from './pages/home/home';
-import { ProfilePage } from './pages/profile/profile';
-import { EmployeeListPage } from './pages/employee-list/employee-list';
 import { LoginPage } from './pages/login/login';
 import { AuthService } from './core/services/auth';
 
 @App({
-    //template: '<ion-nav id="nav" [root]="rootPage"></ion-nav>',
     template: `
-        <ion-nav id="nav" [root]="rootPage" *ngIf="!auth.authenticated()"></ion-nav>
-        <ion-tabs selectedIndex="0" *ngIf="auth.authenticated()">
-            <ion-tab tabIcon="search" [root]="tab1"></ion-tab>
-            <ion-tab tabIcon="contact" [root]="tab2"></ion-tab>
-        </ion-tabs>`,
+        <ion-menu [content]="content">
+            <ion-toolbar>
+                <ion-title>Pages</ion-title>
+            </ion-toolbar>
+            <ion-content>
+                <ion-list>
+                <button ion-item (click)="openPage(homePage)">
+                    Home
+                </button>
+                <button ion-item (click)="openPage(profilePage)">
+                    Profile
+                </button>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+                
+        <ion-nav id="nav" #content [root]="rootPage"></ion-nav>`,
     providers: [
         provide(AuthHttp, {
             useFactory: (http) => {
@@ -26,27 +35,25 @@ import { AuthService } from './core/services/auth';
             deps: [Http]
         }),
         AuthService
-    ],
-    config: {} // http://ionicframework.com/docs/v2/api/config/Config/
+    ]
 })
 
 export class MyApp {
-    rootPage:any = HomePage;
+    rootPage:any = LoginPage;
+    loginPage = LoginPage;
+    homePage = HomePage;
     nav;
-    tab1 = EmployeeListPage;
-    tab2 = ProfilePage;
     
-    constructor(private platform:Platform, private auth:AuthService, private app:IonicApp) {
-        // platform.ready().then(() => {
-        //     StatusBar.styleDefault();
-        // });
+    constructor(private platform:Platform, private auth:AuthService, private app:IonicApp, private menu:MenuController) {
+        platform.ready().then(() => {
+            StatusBar.styleDefault();
+        });
     }
 
     ngAfterViewInit() {
-        if (!this.auth.authenticated()) {
+        if (this.auth.authenticated()) {
             this.nav = this.app.getComponent('nav');
-            let modal = Modal.create(LoginPage);
-            this.nav.present(modal);
+            this.nav.setRoot(HomePage);
         }
     }
 }

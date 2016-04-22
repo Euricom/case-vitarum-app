@@ -16,9 +16,9 @@ export class ProfilePage {
            .then((res) => {
                if (res) {
                    console.log('logged out, rerouting');
-                   //this.nav.setRoot(LoginPage);
-                    let nav2 = this.app.getComponent('nav');
-                    nav2.setRoot('HomePage');
+                   this.nav.setRoot(LoginPage);
+                    // let nav2 = this.app.getComponent('nav');
+                    // nav2.setRoot('HomePage');
                }
            });
     }

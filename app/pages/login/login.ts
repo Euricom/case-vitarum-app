@@ -16,10 +16,7 @@ export class LoginPage {
             .then((res) => {
                 if (res) {
                     console.log('Login success, rerouting');
-                    this.view.dismiss();
-                    //this.nav.setRoot(HomePage);
-                    // let nav2 = this.app.getComponent('nav');
-                    // nav2.setRoot(HomePage);
+                    this.nav.setRoot(HomePage);
                 }
             })
             .catch((err) => {
