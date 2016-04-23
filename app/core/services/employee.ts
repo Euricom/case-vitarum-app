@@ -12,7 +12,7 @@ export class EmployeeService {
     }
     
     getEmployees() {
-        return this.authHttp.get('http://vitarum.euri.com/api/users')
+        return this.authHttp.get('http://jsonplaceholder.typicode.com/users')
             .map(res => res.json());
       
         // return new Promise((resolve, reject) => {

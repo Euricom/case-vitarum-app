@@ -14,29 +14,31 @@ export class HomePage {
   constructor(private nav:NavController, private app:IonicApp, private employeeService: EmployeeService) {
     employeeService.getEmployees()
       .subscribe(
-        data => {
-          console.log(data);
+        employees => {
+          for(let employee of employees) {
+            this.employeeList.push(employee);
+            this.filteredEmployees = this.employeeList;
+          }
         },
         err => console.log(err),
-        () => console.log('Movie Search Complete')
+        () => console.log('Received all resources')
       );
-      // .then((employees: any) => {
-      //   for (let employee of employees) {
-      //     this.employeeList.push(employee);
-      //   }
-      //   this.filteredEmployees = this.employeeList;
-      // });
   }
   
   filterList(event:any) {
       let query = event.target.value;
 
       this.filteredEmployees = this.employeeList.filter((employee) => {
-          let fullName = employee.firstName + ' ' + employee.lastName;
-          if (fullName.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+          if (employee.name.toLowerCase().indexOf(query.toLowerCase()) > -1) {
               return true;
           }
           return false;
+          
+          // let fullName = employee.firstName + ' ' + employee.lastName;
+          // if (fullName.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+          //     return true;
+          // }
+          // return false;
       });
   }
   
