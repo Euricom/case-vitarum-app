@@ -33,13 +33,19 @@ export class AuthService {
         let loginPromise = new Promise((resolve, reject) => {
             this.lock.show({
                 authParams: {
-                    scope: 'openid offline_access',
-                    device: 'Mobile device'
+                    scope: 'openid email offline_access',
+                    device: 'Mobile device',
+                    icon: './assets/Vitarum-logo.svg',
+                    closable: true,
+                    connections: ['google-oauth2', 'linkedin'],
                 }
             }, (err, profile, token, accessToken, state, refreshToken) => {
                 if (err) {
                     reject(err);
                 }
+                console.log(`token ${token}`);
+                console.log(`accessToken ${accessToken}`);
+                console.log(`refreshToken ${refreshToken}`);
                 this.local.set('profile', JSON.stringify(profile));
                 this.local.set('id_token', token);
                 this.local.set('refresh_token', refreshToken);
@@ -57,7 +63,7 @@ export class AuthService {
             this.local.remove('id_token');
             this.local.remove('refresh_token');
             this.user = null;  
-            
+            console.log('removed all info');
             resolve(true);
         });
         

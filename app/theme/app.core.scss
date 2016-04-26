@@ -10,3 +10,68 @@
 @import "../pages/home/home";
 @import "../pages/login-page/login-page";
 @import "../pages/profile/profile";
+@import "../pages/user-detail/user-detail";
+
+.striped-header {
+    background: linear-gradient(to right, #16c77c 0%, #16c77c 25%, #f40D74 25%, #f40D74 50%, #1291d4 50%, #1291d4 75%, #fc5b19 75%, #fc5b19 100%);
+    background-size: 50% 100%;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+//toolbar
+.toolbar {
+  padding: 0;
+}
+
+.toolbar-background {
+  background-color: color($colors, dark-bg);
+  border-color: darken(color($colors, dark-bg), 10%);
+}
+
+.toolbar-title {
+  color: color($colors, primary-text);
+}
+
+//content
+ion-content {
+  padding: 0;
+}
+
+//tabbar
+tabbar {
+  background-color: color($colors, dark-bg);
+  border-color: darken(color($colors, dark-bg), 10%);
+}
+
+.tab-button:hover:not(.disable-hover), .tab-button[aria-selected=true] {
+  color: color($colors, primary-text);
+}
+
+//ion list
+ion-list {
+  margin: 10px;
+  border: 1px solid #c3c7ca;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(199, 199, 199, 0.5);
+  background-color: #f7f9fa;
+  
+  .item {
+    background: transparent;
+    border-bottom: 1px solid #c3c7ca;
+  }
+  
+  .item:first-child {
+    border-top: 0;
+  }
+  
+  .item:last-child {
+    border-bottom: 0;
+  }
+  
+  .item-inner {
+    border: none;
+  }
+}

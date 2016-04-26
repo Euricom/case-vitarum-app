@@ -1,0 +1,22 @@
+<ion-navbar *navbar>
+  <ion-title>CV's</ion-title>
+</ion-navbar>
+
+<ion-content padding class="user-detail">
+  <header>
+    <ion-avatar>
+      <img src="https://euricom-vitarum-dev.herokuapp.com/{{user.picture}}">
+    </ion-avatar>
+    
+    <h4>{{user.name}}</h4>
+  </header>
+  
+  <ion-list>
+    <ion-item *ngFor="#resume of resumeList" (click)="sendResume(resume)">
+      <ion-icon name="lock" *ngIf="resume.state === 'private'"></ion-icon>
+      <ion-icon name="unlock" *ngIf="resume.state === 'public'"></ion-icon>
+      <h2>{{resume.name}}</h2>
+      <p>Last updated {{resume.updated}} by {{resume.updatedBy}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

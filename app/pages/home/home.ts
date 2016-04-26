@@ -1,52 +1,48 @@
 import {Page, NavController, IonicApp} from 'ionic-angular';
-import {EmployeeService} from '../../core/services/employee';
-import {EmployeeDetailPage} from '../employee-detail/employee-detail';
+import {UserService} from '../../core/services/users';
+import {UserDetailPage} from '../user-detail/user-detail';
 
 @Page({
   templateUrl: 'build/pages/home/home.html',
-  providers: [EmployeeService]
+  providers: [UserService]
 })
 
 export class HomePage {
-  employeeList = [];
-  filteredEmployees = [];
-  
-  constructor(private nav:NavController, private app:IonicApp, private employeeService: EmployeeService) {
-    employeeService.getEmployees()
+  userList = [];
+  filteredUserList = [];
+
+  constructor(private nav: NavController, private app: IonicApp, private userService: UserService) {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.userService.getUsers()
       .subscribe(
-        employees => {
-          for(let employee of employees) {
-            this.employeeList.push(employee);
-            this.filteredEmployees = this.employeeList;
-          }
-        },
-        err => console.log(err),
-        () => console.log('Received all resources')
+      results => {
+        for (let user of results.users) {
+          user.picture = user.picture.indexOf('/') === 0 ? user.picture.replace('/', '') : user.picture;
+          this.userList.push(user);
+        }
+        this.filteredUserList = this.userList;
+      },
+      err => console.log(err)
       );
   }
-  
-  filterList(event:any) {
-      let query = event.target.value;
 
-      this.filteredEmployees = this.employeeList.filter((employee) => {
-          if (employee.name.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-              return true;
-          }
-          return false;
-          
-          // let fullName = employee.firstName + ' ' + employee.lastName;
-          // if (fullName.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-          //     return true;
-          // }
-          // return false;
-      });
+  filterList(input: any) {
+    let query = input.value;
+
+    this.filteredUserList = this.userList.filter((user) => {
+        if (user.name.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+            return true;
+        }
+        return false;
+    });
   }
-  
-  goToDetailPage(employee) {
-    console.log('clicked this one:', employee);
-    
-    this.nav.push(EmployeeDetailPage, {
-      employee: employee
+
+  goToDetailPage(user) {
+    this.nav.push(UserDetailPage, {
+      user: user
     });
   }
 }

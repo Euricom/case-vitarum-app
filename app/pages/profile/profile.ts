@@ -12,7 +12,9 @@ export class ProfilePage {
   }
   
   doLogout() {
-    this.app.getComponent('nav').setRoot(LoginPage);
-    //this.nav.setRoot(LoginPage);
+    this.auth.logout()
+      .then(() => {
+        this.app.getComponent('nav').setRoot(LoginPage);
+      });
   }
 }

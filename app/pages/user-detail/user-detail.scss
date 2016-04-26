@@ -1,0 +1,17 @@
+.user-detail {
+  header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  ion-avatar {
+    img {
+      margin: 0 auto;
+      max-width: none;
+      max-height: none;
+      height: 100px;
+      width: 100px;
+      border-radius: 50px;
+    }
+  }
+}
