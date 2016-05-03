@@ -29,22 +29,22 @@ export class UserDetailPage {
   }
   
   sendResume(resume) {
-    console.log(this.user);
     let url:string = `https://euricom-vitarum-dev.herokuapp.com/#/resumes/public/${resume.userName.replace(/\s+/g, '-')}/${resume.id}`;
     let pdfUrl:string = `https://euricom-vitarum-dev.herokuapp.com/api/resumes/${resume.id}/download`;
     
     let fromAddress:string = 'test';
-    let subject:string = `${resume.userName} might a match for your company!`
+    let subject:string = `${resume.userName} might be the perfect match for your company!`
     let body:string = `
-      Hello,
+      <p>Hello,</p>
       
-      ${resume.userName} might be the perfect match you're looking for. Please take a look at his resume.
-      To see his/her resume in the browser click following link:
-      ${url}
-      Or to download a PDF copy of it, click this link:
-      ${pdfUrl}
+      <p>${resume.userName} might be the perfect match you're looking for. Please take a look at his resume.
+      To see his/her resume in the browser click following link:<p>
+      <a href="${url}">${resume.userName} CV</a>
       
-      Regards,
+      <p>Or to download it as PDF, click this link:</p>
+      <a href="${pdfUrl}">${resume.userName} CV - pdf</a>
+      
+      <p>Regards,</p>
     `;
     
     this.mailService.openMailClient(fromAddress, subject, body);

@@ -33,6 +33,6 @@
   "cordovaPlatforms": [
     "ios"
   ],
-  "name": "myapp",
-  "description": "myApp: An Ionic project"
+  "name": "Vitarum Mail App",
+  "description": "Vitarum Mail App"
 }

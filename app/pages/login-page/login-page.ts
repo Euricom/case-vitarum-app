@@ -14,7 +14,6 @@ import {AuthService} from '../../core/services/auth';
 export class LoginPage {
   
   constructor(private nav: NavController, private auth: AuthService) {
-    
   }
   
   doLogin() {

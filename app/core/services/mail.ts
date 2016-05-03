@@ -1,13 +1,16 @@
 import {Injectable} from 'angular2/core';
+import {Platform} from 'ionic-angular';
 
 @Injectable() 
 
 export class MailService {    
-  constructor() {}
+  constructor(private platform: Platform) {
+  }
   
-  openMailClient(fromAddress, subject, body) {    
+  openMailClient(fromAddress, subject, body) {          
     let cordovaMail = this._cordovaMail();
-    console.log(cordovaMail);
+    
+    console.log('result of cordovaMail:', cordovaMail);
     
     if (cordovaMail) {
       let email = {
@@ -26,18 +29,10 @@ export class MailService {
 
   _cordovaMail() {
     let cordovaEmail = typeof cordova !== 'undefined' ? cordova.plugins.email : '';
-    
-    console.log('cordova', cordovaEmail);
-    
-    // if (cordovaEmail) {
-    //   cordovaEmail.isAvailable(
-    //     function(isAvailable) {
-    //       if (isAvailable) {
-    //         return cordovaEmail;
-    //       }
-    //     }
-    //   );
-    // }
+
+    if (cordovaEmail) {
+      return cordovaEmail;
+    }
     
     return null;
   }
