@@ -13,6 +13,11 @@ export class ResumeService {
     
     getResumeSummaryByUserId(userId) {
         return this.authHttp.get(`https://euricom-vitarum-dev.herokuapp.com/api/users/${userId}/resumes?summary=true`)
+          .map(res => res.json());
+    }
+    
+    getPublishedResumeById(id) {
+      return this.authHttp.get(`https://euricom-vitarum-dev.herokuapp.com/api/resumes/published/${id}`)
         .map(res => res.json());
     }
 }

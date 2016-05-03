@@ -8,7 +8,7 @@
 </ion-toolbar>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="userList.length > 0">
     <ion-item *ngFor="#user of filteredUserList" (click)="goToDetailPage(user)">
       <ion-avatar item-left>
         <img src="https://euricom-vitarum-dev.herokuapp.com/{{user.picture}}">
@@ -16,5 +16,6 @@
       <h2>{{user.name}}</h2>
     </ion-item>
   </ion-list>
+  <p *ngIf="filteredUserList.length === 0">No users found that match your criteria</p>
 </ion-content>
 
