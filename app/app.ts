@@ -29,7 +29,8 @@ export class MyApp {
   constructor(platform: Platform, menu: MenuController, private auth: AuthService, private app: IonicApp) {
     this.menu = menu;
     platform.ready().then(() => {
-      StatusBar.styleDefault();
+      //StatusBar.styleDefault();
+      StatusBar.hide();
     });
   }
   

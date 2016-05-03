@@ -1,4 +1,5 @@
 <ion-navbar *navbar>
+  <div class="striped-header"></div>
   <ion-title>CV's</ion-title>
 </ion-navbar>
 
@@ -7,10 +8,10 @@
     <ion-avatar>
       <img src="https://euricom-vitarum-dev.herokuapp.com/{{user.picture}}">
     </ion-avatar>
-    
+
     <h4>{{user.name}}</h4>
   </header>
-  
+
   <ion-list>
     <ion-item *ngFor="#resume of resumeList" (click)="sendResume(resume)">
       <ion-icon name="lock" *ngIf="resume.state === 'private'"></ion-icon>

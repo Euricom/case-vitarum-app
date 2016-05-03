@@ -1,4 +1,4 @@
-import {Page, NavController, IonicApp} from 'ionic-angular';
+import {Page, NavController, IonicApp, Loading} from 'ionic-angular';
 import {UserService} from '../../core/services/users';
 import {UserDetailPage} from '../user-detail/user-detail';
 
@@ -10,9 +10,16 @@ import {UserDetailPage} from '../user-detail/user-detail';
 export class HomePage {
   userList = [];
   filteredUserList = [];
+  loader;
 
   constructor(private nav: NavController, private app: IonicApp, private userService: UserService) {
     this.getUsers();
+    
+    this.loader = Loading.create({
+      content: 'Please wait...'
+    });
+
+    this.nav.present(this.loader);
   }
 
   getUsers() {
@@ -24,6 +31,7 @@ export class HomePage {
           this.userList.push(user);
         }
         this.filteredUserList = this.userList;
+        this.loader.dismiss();
       },
       err => console.log(err)
       );
