@@ -16,7 +16,7 @@ export class HomePage {
     this.getUsers();
     
     this.loader = Loading.create({
-      content: 'Please wait...'
+      content: 'Loading employees...'
     });
 
     this.nav.present(this.loader);

@@ -21,11 +21,18 @@ export class UserDetailPage {
       .subscribe(
         results => {
           for(let resume of results.resumes) {
+            console.log(resume);
             this.resumeList.push(resume);
           }
+          
+          console.log('length', this.resumeList.length);
         },
         err => console.log(err)
       );
+  }
+  
+  previewResume(resume) {
+    window.open(`https://euricom-vitarum-dev.herokuapp.com/#/resumes/public/${resume.userName.replace(/\s+/g, '-')}/${resume.id}`,'_blank', 'location=yes,enableviewportscale=yes'); 
   }
   
   sendResume(resume) {
@@ -39,10 +46,10 @@ export class UserDetailPage {
       
       <p>${resume.userName} might be the perfect match you're looking for. Please take a look at his resume.
       To see his/her resume in the browser click following link:<p>
-      <a href="${url}">${resume.userName} CV</a>
+      <a href="${url}">${resume.name} - ${resume.userName}</a>
       
       <p>Or to download it as PDF, click this link:</p>
-      <a href="${pdfUrl}">${resume.userName} CV - pdf</a>
+      <a href="${pdfUrl}">${resume.name} - ${resume.userName} PDF</a>
       
       <p>Regards,</p>
     `;
