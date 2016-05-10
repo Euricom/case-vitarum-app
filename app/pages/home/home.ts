@@ -1,10 +1,12 @@
 import {Page, NavController, IonicApp, Loading} from 'ionic-angular';
 import {UserService} from '../../core/services/users';
 import {UserDetailPage} from '../user-detail/user-detail';
+import {OrderBy} from '../../core/pipes/orderBy';
 
 @Page({
   templateUrl: 'build/pages/home/home.html',
-  providers: [UserService]
+  providers: [UserService],
+  pipes: [OrderBy]
 })
 
 export class HomePage {

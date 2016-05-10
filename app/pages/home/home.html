@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list *ngIf="userList.length > 0" class="vt-list">
-    <ion-item *ngFor="#user of filteredUserList" (click)="goToDetailPage(user)">
+    <ion-item *ngFor="#user of filteredUserList | orderBy : 'name'" (click)="goToDetailPage(user)">
       <ion-avatar item-left>
         <img src="https://euricom-vitarum-dev.herokuapp.com/{{user.picture}}">
       </ion-avatar>
