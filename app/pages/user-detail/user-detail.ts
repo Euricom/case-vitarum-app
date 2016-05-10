@@ -21,11 +21,10 @@ export class UserDetailPage {
       .subscribe(
         results => {
           for(let resume of results.resumes) {
-            console.log(resume);
-            this.resumeList.push(resume);
+            if (resume.state === 'public') {
+              this.resumeList.push(resume);
+            }
           }
-          
-          console.log('length', this.resumeList.length);
         },
         err => console.log(err)
       );
